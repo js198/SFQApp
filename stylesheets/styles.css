@@ -1,0 +1,268 @@
+/* line 3, ../sass/styles.scss */
+.landing-pg, .landing-pg a {
+  text-align: center;
+  margin: auto;
+  padding: auto;
+  width: 90%;
+  max-width: 600px;
+}
+/* line 14, ../sass/styles.scss */
+.landing-pg .instruct {
+  font-size: 0.6em;
+  width: 95%;
+}
+
+/* line 20, ../sass/styles.scss */
+.difficulty {
+  margin: 7px;
+  padding: 8px;
+  display: inline-block;
+  float: left;
+  font-size: 0.5em;
+  color: white;
+  text-decoration: none;
+  cursor: pointer;
+  transition: all 1s;
+}
+/* line 31, ../sass/styles.scss */
+.difficulty:hover {
+  background-color: black;
+  border-radius: 10%;
+  padding: 8px;
+  color: #0DFF92;
+}
+
+/* line 39, ../sass/styles.scss */
+.selected {
+  background-color: black;
+  border-radius: 10%;
+  padding: 8px;
+  color: #0DFF92;
+}
+
+@keyframes highlight {
+  0% {
+    color: white;
+  }
+  50% {
+    color: #AC1D3F;
+  }
+  100% {
+    color: white;
+  }
+}
+/* line 53, ../sass/styles.scss */
+.flash {
+  animation: highlight 2s infinite;
+}
+
+/* line 57, ../sass/styles.scss */
+body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #222222;
+  color: white;
+  font-family: 'Lato', sans-serif, calibri;
+  font-size: 1.7em;
+  letter-spacing: 0.1em;
+  overflow: hidden;
+}
+/* line 69, ../sass/styles.scss */
+body .loader-icon {
+  width: 50px;
+  height: 50px;
+  border: 3px solid #222222;
+  border-top: 4px solid #0DFF92;
+  border-radius: 50%;
+  margin: auto;
+  padding: auto;
+  position: absolute;
+  z-index: 8;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  animation: spin 1s infinite;
+}
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+/* line 91, ../sass/styles.scss */
+body .overlay {
+  width: 100%;
+  height: 100%;
+  background-color: #222222;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 7;
+  transition: all 1s;
+}
+/* line 102, ../sass/styles.scss */
+body .displayResponse {
+  text-align: center;
+  max-width: 600px;
+  width: 90%;
+  margin: 10px auto;
+  padding: auto;
+}
+/* line 110, ../sass/styles.scss */
+body .container {
+  text-align: center;
+  margin: auto;
+  padding: auto;
+  max-width: 80%;
+  transform: translate(0%, 15%);
+}
+/* line 118, ../sass/styles.scss */
+body .choices, body .question {
+  max-width: 400px;
+  margin: 20px auto;
+  padding: auto;
+  transition: slide 2s;
+}
+/* line 125, ../sass/styles.scss */
+body .question {
+  max-width: 700px;
+}
+@keyframes slide {
+  100% {
+    left: 0;
+  }
+}
+/* line 134, ../sass/styles.scss */
+body ul {
+  list-style: none;
+  height: 100%;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
+/* line 143, ../sass/styles.scss */
+body ul li {
+  color: #AAAAAA;
+  position: relative;
+  float: left;
+  width: 100%;
+  height: 100px;
+  border-bottom: 1px solid #111111;
+}
+/* line 152, ../sass/styles.scss */
+body ul li input[type=radio] {
+  position: relative;
+  opacity: 0;
+  float: left;
+  left: 24px;
+  top: 40px;
+  padding: 50px;
+  z-index: 9;
+}
+/* line 162, ../sass/styles.scss */
+body ul li label {
+  display: inline-block;
+  font-weight: 300;
+  padding: 20px 20px 20px 70px;
+  margin: 10px auto;
+  height: 30px;
+  cursor: pointer;
+  -webkit-transition: all 0.25s linear;
+}
+/* line 172, ../sass/styles.scss */
+body ul li:hover label {
+  color: #FFFFFF;
+}
+/* line 176, ../sass/styles.scss */
+body ul li .check {
+  display: block;
+  position: absolute;
+  border: 5px solid #AAAAAA;
+  border-radius: 100%;
+  height: 20px;
+  width: 20px;
+  top: 35px;
+  left: 20px;
+  z-index: 5;
+  transition: border .25s linear;
+  -webkit-transition: border .25s linear;
+}
+/* line 190, ../sass/styles.scss */
+body ul li:hover .check {
+  border: 5px solid #FFFFFF;
+}
+/* line 194, ../sass/styles.scss */
+body ul li .check::before {
+  display: block;
+  border-radius: 100%;
+  height: 15px;
+  width: 15px;
+  top: 5px;
+  left: 5px;
+  margin: auto;
+  transition: background 0.25s linear;
+  -webkit-transition: background 0.25s linear;
+}
+/* line 206, ../sass/styles.scss */
+body input[type=radio]:checked ~ .check {
+  border: 5px solid #0DFF92;
+}
+/* line 210, ../sass/styles.scss */
+body input[type=radio]:checked ~ .check::before {
+  background: #0DFF92;
+}
+/* line 214, ../sass/styles.scss */
+body input[type=radio]:checked ~ label {
+  color: #0DFF92;
+}
+/* line 218, ../sass/styles.scss */
+body button {
+  border-radius: 10%;
+  border: purple;
+  width: 100px;
+  margin: 50px 0;
+  padding: 5px;
+  background-color: black;
+  color: white;
+  outline: none;
+}
+/* line 228, ../sass/styles.scss */
+body button:hover {
+  background-color: white;
+  color: black;
+  transition: background 0.25s linear;
+  -webkit-transition: background 0.25s linear;
+}
+
+@media screen and (max-width: 800px) {
+  /* line 239, ../sass/styles.scss */
+  body {
+    font-size: 1.5em;
+  }
+  /* line 243, ../sass/styles.scss */
+  body .options {
+    text-align: center;
+    background-color: black;
+  }
+  /* line 247, ../sass/styles.scss */
+  body .options .difficulty {
+    float: none;
+  }
+  /* line 252, ../sass/styles.scss */
+  body .container {
+    transform: translate(0%, 5%);
+  }
+  /* line 256, ../sass/styles.scss */
+  body .choices, body .question {
+    margin: -10px auto;
+  }
+  /* line 260, ../sass/styles.scss */
+  body .question {
+    margin: 15px auto;
+  }
+}

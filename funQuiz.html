@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta content="text/html" language="eng">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="stylesheet" type="text/css" href="stylesheets/styles.css">
+		<link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet"> 
+		<title>The Super Fun Grammer Quiz</title>
+	</head>
+	<body>
+		<div class="overlay">
+				<div class="loader-icon"></div>
+		</div>
+		
+		<div class="options">
+			<div class="difficulty easy selected">Easy</diV>
+			<div class="difficulty hard">Medium</diV>
+		</div>
+
+		<div class="container">
+			<div class="question"></div>
+			<div class="displayResponse"></div>
+			<ul class="choices">
+				<li>
+					<input type='radio' name='choices' value='a'><label class="label1"></label>
+					<div class='check'></div>
+				</li><br>
+				<li><input type='radio' name='choices' value='b'><label class="label2"></label>
+					<div class='check'></div>
+				</li><br>
+				<li>
+					<input type='radio' name='choices' value='c'><label class="label3"></label>
+					<div class='check'></div>
+				</li><br>
+
+				<button onclick='checkAnswers()'>Next</button>
+			</ul>
+		</div>
+
+	<script type="text/javascript" src="funQuiz.js"></script>
+	</body>
+</html>
