@@ -3,7 +3,7 @@ var questions = [
 	["Ich habe d__ Schussel zu Hause vergessen!", "die", "der", "den", "c"],
 	["Donde f__ el anoche?", "fue", "fui", "fuiste", "a"],
 	["Il n'a pas beaucoup d_ argent.", "de", "der", "d'", "c"],
-	["D__ deutsche Grammatik ist nicht sehr schwierig", "die", "das", "den", "a"],
+	["D__ deutsche Grammatik ist nicht sehr schwierig", "Die", "Das", "Den", "a"],
 	["Podemos ir __ supercado manana si tines ganas?", "a la", "al", "alo", "b"],
 	["On voudrait aller a_ parc.", "au", "a la", "a", "a"],
 	["Wo___ gehen Sie Heute abend?", "hin", "ran", "Wo", "a"]
@@ -14,7 +14,7 @@ var diffQuestions = [
 	["Zwischen d__ grossen Baumen, steht d__ Gatner.", "den + der", "der + den", "den + den", "a"],
 	["Tu vas t__ sortir?", "t'en", "te", "tu", "a"],
 	["La maison dans la_____ j'habite est sale..", "laquel", "laquelle", "laquels", "b"],
-	["Habria cambia__ sus vestido antes de venir aqui, pero no teni_ bastante tiempo.", "cambiar + tenir", "cambiar + tenia", "cambiado + cambia", "c"],
+	["Habria cambia__ sus vestido antes de venir aqui, pero no teni_ bastante tiempo.", "cambiar + tenir", "cambiar + tenia", "cambiado + tenia", "c"],
 	["No se si s__ abierto en este momento.", "sabe", "supa", "sea", "c"],
 	["hola...", "hola", " adios", "buena", "a"]
 ];
@@ -27,31 +27,13 @@ var correct=0;
 var position=0;
 var qslength = questions.length;
 var choices = document.getElementsByName("choices");
-var choice;
 var count=0;
 var difficulty = document.querySelectorAll(".difficulty");
 var displayResponse = document.querySelector(".displayResponse")
 var placeHolder = questions;
 var overlay = document.querySelector(".overlay");
-var challenge = document.querySelectorAll("a");
 
-for(var x=0; x<challenge.length; x++){
-	challenge[x].addEventListener("click", function(){
-		if(this.classList.contains("easy")){
-			correct=0;
-			position=0;
-			placeHolder = questions;
-			renderQs();
-		} else if(this.classList.contains("hard")){
-			correct=0;
-			position=0;
-			placeHolder = diffQuestions;
-			renderQs();
-		}
-	});
-}
-
-//hook up the buttons to the data array
+//select difficulty and hook them up to the neccesary data array
 
 for(var i=0; i<difficulty.length; i++){
 	difficulty[i].addEventListener("click", function(){
@@ -72,10 +54,11 @@ for(var i=0; i<difficulty.length; i++){
 		}
 	});
 }
+
 //render the question function(also a reset button)
 
 function renderQs(){
-	//create if/else statement to capture last question ad load results
+	//create if/else statement to capture last question and load results
 
 	if(position>=qslength){
 		console.log(correct+"/"+qslength+"position: "+position);
@@ -91,6 +74,8 @@ function renderQs(){
 			choiceBox.style.display="none";
 			overlay.style.opacity=0;
 			overlay.style.zIndex ="-99";
+			correct=0;
+			position=0;
 
 			if(placeHolder==questions){
 				difficulty[1].innerHTML = "Take the next step up!";
@@ -100,7 +85,8 @@ function renderQs(){
 				difficulty[0].classList.add("flash");
 			}
 			return false;
-			}, 2000);
+
+		}, 2000);
 	}
 
 	displayResponse.innerHTML="";
@@ -116,6 +102,8 @@ function renderQs(){
 	var labelTwo = document.querySelector(".label2");
 	var labelThr = document.querySelector(".label3");
 
+	placeHolder = placeHolder;
+
 	var qPosition = placeHolder[position][0];
 	var ch1 = placeHolder[position][1], ch2 = placeHolder[position][2], ch3 = placeHolder[position][3];
 
@@ -126,14 +114,18 @@ function renderQs(){
 }
 
 //hook up the chosen answer with the actual answer to verify if correct or not
-//increment correct if correct and the position as well
+//increment correct if correct and the position
 //load the next question
 
 function checkAnswers(){
-	
-	 for(var i=0; i<choices.length; i++){
+	//choice var must be stored in this function so that it can be reset on difficulty change.
+	// otherwise choice in the global environment remains the answer of the last array question
+	var choice;
+
+	for(var i=0; i<choices.length; i++){
 	 	if(choices[i].checked){
 	 		choice = choices[i].value;
+	 		//reset radio button for the next q
 	 		choices[i].checked =false;
 	 	}
 	}
@@ -146,9 +138,30 @@ function checkAnswers(){
 	renderQs();
 }
 
-function randomQ(){
-	var ranQ = Math.ceil(Math.random()*6);
-	return ranQ;
+function randomize(array){
+    var i = array.length,
+        j = 0,
+        k = 1,
+        temp,
+        wasteQs = [];
+
+    while (i>0) {
+    	//while passed in array still has objs
+    	//generate a random number and push into empty
+
+        j = Math.floor(Math.random() * i);
+        k = j;
+        wasteQs.push(j);
+
+        //go through array for future no.s
+
+        i--;
+        temp = array[i];
+        array[i] = array[j];
+        array[j] = temp;
+    }
+    
+    return array;
 }
 
 setTimeout(function(){
